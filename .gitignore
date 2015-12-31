@@ -1,3 +1,18 @@
+# =========================
+# User Setting
+# =========================
+
+# File
+*.pyc
+*.json
+*.sqlite3
+
+# Directory
+build
+dist
+flaskrestlessapiclient.egg-info
+
+# =========================
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
