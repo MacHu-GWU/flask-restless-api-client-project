@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from angora.dataIO import safe_dump_js
 from faker import Factory
 from datetime import datetime, date
-import random, string
+import random, string, json
 
 def simple_serialize(data):
     data = dict(data)
@@ -50,9 +49,10 @@ for i in range(n_post):
     post_data.append(simple_serialize(data))
 
 if __name__ == "__main__":
-    data = {
+    all_data = {
         "user_data": user_data,
         "tag_data": tag_data,
         "post_data": post_data, 
     }
-    safe_dump_js(data, "data.json")
+    json.dump(all_data, open("all_data.json", "w"), sort_keys=True,
+        indent=4, separators=("," , ": "))

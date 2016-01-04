@@ -52,23 +52,27 @@ class Tag(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode, nullable=False)
-    
-# Create the database tables.
-db.create_all()
 
-# Create the Flask-Restless API manager.
-manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
-
-# Create API endpoints
-manager.create_api(User, collection_name="user", 
-                   methods=["GET", "POST", "PATCH", "DELETE"], 
-                   allow_functions=True)
-manager.create_api(Post, collection_name="post", 
-                   methods=["GET", "POST", "PATCH", "DELETE"], 
-                   allow_functions=True)
-manager.create_api(Tag, collection_name="tag", 
-                   methods=["GET", "POST", "PATCH", "DELETE"], 
-                   allow_functions=True)
-
-# start the flask loop
-app.run()
+if __name__ == "__main__":    
+    def run_api_server():
+        # Create the database tables.
+        db.create_all()
+        
+        # Create the Flask-Restless API manager.
+        manager = flask.ext.restless.APIManager(app, flask_sqlalchemy_db=db)
+        
+        # Create API endpoints
+        manager.create_api(User, collection_name="user", 
+                           methods=["GET", "POST", "PATCH", "DELETE"], 
+                           allow_functions=True)
+        manager.create_api(Post, collection_name="post", 
+                           methods=["GET", "POST", "PATCH", "DELETE"], 
+                           allow_functions=True)
+        manager.create_api(Tag, collection_name="tag", 
+                           methods=["GET", "POST", "PATCH", "DELETE"], 
+                           allow_functions=True)
+        
+        # start the flask loop
+        app.run()
+        
+    run_api_server()
